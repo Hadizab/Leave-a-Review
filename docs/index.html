@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Email Form</title>
+  <title>Contact Me / Leave a Review</title>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     (function(){
@@ -15,21 +15,22 @@
   <style>
     body {
       font-family: Georgia, serif;
-      background: #f5f0e6; /* soft cream background */
+      background: #fff; /* Changed from cream to white */
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
     }
 
     #contact-form {
       background: #fffaf2;
-      padding: 25px;
+      padding: 30px;
       border-radius: 12px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.15);
       width: 100%;
-      max-width: 420px;
+      max-width: 450px;
       border: 1px solid #d2b48c; /* tan border */
       animation: fadeIn 1s ease-in-out;
     }
@@ -37,7 +38,7 @@
     #contact-form h2 {
       text-align: center;
       color: #5a4633; /* dark brown */
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       font-family: 'Times New Roman', serif;
     }
 
@@ -45,23 +46,26 @@
     #contact-form textarea {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
+      margin: 12px 0;
       border: 1px solid #c2a679;
       border-radius: 8px;
       font-size: 15px;
       background: #fff;
       transition: all 0.3s ease;
+      display: block;
+      box-sizing: border-box;
     }
 
     #contact-form input:focus,
     #contact-form textarea:focus {
       border-color: #8b5e3c;
       box-shadow: 0 0 6px rgba(139,94,60,0.4);
+      outline: none;
     }
 
     #contact-form button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       background: #8b5e3c; /* rich brown */
       border: none;
       border-radius: 8px;
@@ -70,6 +74,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.2s ease;
+      margin-top: 10px;
     }
 
     #contact-form button:hover {
@@ -83,7 +88,7 @@
 
     .message {
       text-align: center;
-      margin-top: 12px;
+      margin-top: 15px;
       font-size: 14px;
       font-weight: bold;
     }
@@ -98,10 +103,10 @@
 </head>
 <body>
   <form id="contact-form">
-    <h2>Contact Me</h2>
+    <h2>Contact Me / Leave a Review</h2>
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your Message" required></textarea>
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
     <button type="submit">Send Message</button>
     <div id="form-message" class="message"></div>
   </form>
@@ -127,10 +132,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
