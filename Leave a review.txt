@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Form</title>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init({
+        publicKey: "YOUR_PUBLIC_KEY",
+      });
+    })();
+  </script>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #f5f0e6; /* soft cream background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #contact-form {
+      background: #fffaf2;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 420px;
+      border: 1px solid #d2b48c; /* tan border */
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #contact-form h2 {
+      text-align: center;
+      color: #5a4633; /* dark brown */
+      margin-bottom: 20px;
+      font-family: 'Times New Roman', serif;
+    }
+
+    #contact-form input,
+    #contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #c2a679;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+
+    #contact-form input:focus,
+    #contact-form textarea:focus {
+      border-color: #8b5e3c;
+      box-shadow: 0 0 6px rgba(139,94,60,0.4);
+    }
+
+    #contact-form button {
+      width: 100%;
+      padding: 12px;
+      background: #8b5e3c; /* rich brown */
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    #contact-form button:hover {
+      background: #6d452b; /* darker brown */
+      transform: translateY(-2px);
+    }
+
+    #contact-form button:active {
+      transform: translateY(1px);
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .success { color: green; }
+    .error { color: red; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <form id="contact-form">
+    <h2>Contact Me</h2>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+    <div id="form-message" class="message"></div>
+  </form>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formMessage = document.getElementById('form-message');
+      formMessage.textContent = "Sending...";
+      formMessage.className = "message";
+
+      emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+        .then(() => {
+          formMessage.textContent = "✅ Message sent successfully!";
+          formMessage.className = "message success";
+          this.reset();
+        }, (err) => {
+          formMessage.textContent = "❌ Failed to send. Please try again.";
+          formMessage.className = "message error";
+          console.error("Error:", err);
+        });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
